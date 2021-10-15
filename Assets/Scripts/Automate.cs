@@ -40,13 +40,16 @@ public class Automate : MonoBehaviour
         
         string ift = inputField.text;
 
-        string[] stringSeparators = new string[] { ", " };
+        //string[] stringSeparators = new string[] { ", " };
+        //string[] splitArray =  ift.Split(stringSeparators, StringSplitOptions.None);
 
-        string[] splitArray =  ift.Split(stringSeparators, StringSplitOptions.None);
+        char[] delimiterChars = { ' ', ',', '.', ':', '\t' };
+        string[] words = ift.Split(delimiterChars);  
 
         List<string> moves = new List<string>();
 
-        moves.AddRange(splitArray);
+        //moves.AddRange(splitArray);
+        moves.AddRange(words);
 
         moveList = moves;
     }

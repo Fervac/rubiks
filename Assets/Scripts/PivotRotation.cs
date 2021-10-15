@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PivotRotation : MonoBehaviour
 {
@@ -10,7 +11,9 @@ public class PivotRotation : MonoBehaviour
     private bool dragging = false;
     private bool autoRotating = false;
     private float sensitivity = 0.4f;
-    private float speed = 350f;
+    //private float speed = 350f;
+    public Slider slider;
+    private float speed = 550f;
     private Vector3 rotation;
 
     private Quaternion targetQuaternion;
@@ -40,6 +43,8 @@ public class PivotRotation : MonoBehaviour
         {
             AutoRotate();
         }
+
+        speed = slider.value;
     }
 
     private void SpinSide(List<GameObject> side)
