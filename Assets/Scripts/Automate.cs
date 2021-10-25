@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 
 public class Automate : MonoBehaviour
 {
@@ -18,10 +19,21 @@ public class Automate : MonoBehaviour
 
     public InputField inputField;
 
+    private void Awake()
+    {
+        Screen.SetResolution(1920, 1080, false);
+    }
+
     private void Start()
     {
         cubeState = FindObjectOfType<CubeState>();
         readCube = FindObjectOfType<ReadCube>();
+    }
+
+    public void Retry()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
     }
 
     private void Update()
