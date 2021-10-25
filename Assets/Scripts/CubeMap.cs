@@ -31,29 +31,54 @@ public class CubeMap : MonoBehaviour
         int i = 0;
         foreach (Transform map in side)
         {
+            // if (face[i].name[0] == 'F')
+            // {
+            //     map.GetComponent<Image>().color = new Color(1, 0.5f, 0, 1);
+            // }
+            // if (face[i].name[0] == 'B')
+            // {
+            //     map.GetComponent<Image>().color = Color.red;
+            // }
+            // if (face[i].name[0] == 'U')
+            // {
+            //     map.GetComponent<Image>().color = Color.yellow;
+            // }
+            // if (face[i].name[0] == 'D')
+            // {
+            //     map.GetComponent<Image>().color = Color.white;
+            // }
+            // if (face[i].name[0] == 'L')
+            // {
+            //     map.GetComponent<Image>().color = Color.green;
+            // }
+            // if (face[i].name[0] == 'R')
+            // {
+            //     map.GetComponent<Image>().color = Color.blue;
+            // }
+
             if (face[i].name[0] == 'F')
             {
-                map.GetComponent<Image>().color = new Color(1, 0.5f, 0, 1);
+                map.GetComponent<Image>().color = Color.blue;
             }
             if (face[i].name[0] == 'B')
             {
-                map.GetComponent<Image>().color = Color.red;
+                map.GetComponent<Image>().color = Color.green;
             }
             if (face[i].name[0] == 'U')
             {
-                map.GetComponent<Image>().color = Color.yellow;
+                map.GetComponent<Image>().color = Color.white;
             }
             if (face[i].name[0] == 'D')
             {
-                map.GetComponent<Image>().color = Color.white;
+                map.GetComponent<Image>().color = Color.yellow;
             }
             if (face[i].name[0] == 'L')
             {
-                map.GetComponent<Image>().color = Color.green;
+                map.GetComponent<Image>().color = Color.red;
             }
             if (face[i].name[0] == 'R')
             {
-                map.GetComponent<Image>().color = Color.blue;
+                map.GetComponent<Image>().color = new Color(1, 0.5f, 0, 1);
             }
             i++;
         }
