@@ -38,6 +38,19 @@ public class RotateBigCube : MonoBehaviour
         if ( Input.GetKeyDown(KeyCode.LeftArrow) )
             target.transform.Rotate(0, 90, 0, Space.World);
 
+        if (Input.GetKeyDown(KeyCode.Keypad7))
+            target.transform.Rotate(90, 0, 0, Space.World);
+        if (Input.GetKeyDown(KeyCode.Keypad9))
+            target.transform.Rotate(0, 0, -90, Space.World);
+        if (Input.GetKeyDown(KeyCode.Keypad4))
+            target.transform.Rotate(0, 90, 0, Space.World);
+        if (Input.GetKeyDown(KeyCode.Keypad6))
+            target.transform.Rotate(0, -90, 0, Space.World);
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+            target.transform.Rotate(0, 0, 90, Space.World);
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+            target.transform.Rotate(-90, 0, 0, Space.World);
+
         // if (LeftSwipe(currentSwipe))
         //     {
         //         target.transform.Rotate(0, 90, 0, Space.World);
