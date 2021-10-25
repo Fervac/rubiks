@@ -18,6 +18,7 @@ public class Automate : MonoBehaviour
     private ReadCube readCube;
 
     public InputField inputField;
+    private bool anim = false;
 
     private void Awake()
     {
@@ -30,9 +31,30 @@ public class Automate : MonoBehaviour
         readCube = FindObjectOfType<ReadCube>();
     }
 
+    private void AnimationBegin()
+    {
+        anim = true;
+        StartCoroutine(RotationAnimation());
+    }
+
+    IEnumerator RotationAnimation()
+    {
+        yield return new WaitForSeconds(.01f);
+        if (moveList.Count > 0 && !CubeState.autoRotating && CubeState.started)
+        {
+            DoMove(moveList[0]);
+            moveList.Remove(moveList[0]);
+            anim = false;
+        }
+        anim = false;
+    }
+
     public void Retry()
     {
+        anim = false;
         CubeState.autoRotating = false;
+        CubeState.started = true;
+        moveList.Clear();
 
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
@@ -40,12 +62,15 @@ public class Automate : MonoBehaviour
 
     private void Update()
     {
-        if (moveList.Count > 0 && !CubeState.autoRotating && CubeState.started)
-        {
-            DoMove(moveList[0]);
+        // if (moveList.Count > 0 && !CubeState.autoRotating && CubeState.started)
+        // {
+        //     DoMove(moveList[0]);
 
-            moveList.Remove(moveList[0]);
-        }
+        //     moveList.Remove(moveList[0]);
+        // }
+
+        if (!anim)
+            AnimationBegin();
     }
 
     public void Shuffle2()
