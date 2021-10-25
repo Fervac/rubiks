@@ -29,15 +29,6 @@ public class RotateBigCube : MonoBehaviour
 
     private void CheckInput()
     {
-        if ( Input.GetKeyDown(KeyCode.UpArrow) )
-            target.transform.Rotate(90, 0, 0, Space.World);
-        if ( Input.GetKeyDown(KeyCode.DownArrow) )
-            target.transform.Rotate(0, 0, 90, Space.World);
-        if ( Input.GetKeyDown(KeyCode.RightArrow) )
-            target.transform.Rotate(0, -90, 0, Space.World);
-        if ( Input.GetKeyDown(KeyCode.LeftArrow) )
-            target.transform.Rotate(0, 90, 0, Space.World);
-
         if (Input.GetKeyDown(KeyCode.Keypad7))
             target.transform.Rotate(90, 0, 0, Space.World);
         if (Input.GetKeyDown(KeyCode.Keypad9))
@@ -50,31 +41,6 @@ public class RotateBigCube : MonoBehaviour
             target.transform.Rotate(0, 0, 90, Space.World);
         if (Input.GetKeyDown(KeyCode.Keypad3))
             target.transform.Rotate(-90, 0, 0, Space.World);
-
-        // if (LeftSwipe(currentSwipe))
-        //     {
-        //         target.transform.Rotate(0, 90, 0, Space.World);
-        //     }
-        //     else if (RightSwipe(currentSwipe))
-        //     {
-        //         target.transform.Rotate(0, -90, 0, Space.World);
-        //     }
-        //     else if (UpLeftSwipe(currentSwipe))
-        //     {
-        //         target.transform.Rotate(90, 0, 0, Space.World);
-        //     }
-        //     else if (UpRightSwipe(currentSwipe))
-        //     {
-        //         target.transform.Rotate(0, 0, -90, Space.World);
-        //     }
-        //     else if (DownLeftSwipe(currentSwipe))
-        //     {
-        //         target.transform.Rotate(0, 0, 90, Space.World);
-        //     }
-        //     else if (DownRightSwipe(currentSwipe))
-        //     {
-        //         target.transform.Rotate(-90, 0, 0, Space.World);
-        //     }
     }
 
     private void Drag()

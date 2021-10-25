@@ -32,6 +32,8 @@ public class Automate : MonoBehaviour
 
     public void Retry()
     {
+        CubeState.autoRotating = false;
+
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     }
