@@ -24,8 +24,6 @@ public class Automate : MonoBehaviour
     private void Awake()
     {
         Screen.SetResolution(1920, 1080, false);
-
-        GetArg();
     }
 
     private static void GetArg()
@@ -38,15 +36,11 @@ public class Automate : MonoBehaviour
             mix = args[1];
             solution = args[2];
         }
-        //List<string> moves = new List<string>();
-        //string[] stringSeparators = new string[] { ", " };
-        //string[] splitArray =  ift.Split(stringSeparators, StringSplitOptions.None);
 
         char[] delimiterChars = { ' ', ',', '.', ':', '\t' };
         string[] words = mix.Split(delimiterChars);  
 
         List<string> moves = new List<string>();
-        //moves.AddRange(splitArray);
         moves.AddRange(words);
         moveList = moves;
 
@@ -61,10 +55,13 @@ public class Automate : MonoBehaviour
     {
         cubeState = FindObjectOfType<CubeState>();
         readCube = FindObjectOfType<ReadCube>();
+
+        GetArg();
     }
 
     public void Solve()
     {
+        Cleanup();
         moveList = soluceMoveList;
     }
 
