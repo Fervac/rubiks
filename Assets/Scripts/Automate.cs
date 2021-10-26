@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class Automate : MonoBehaviour
 {
     public static List<string> moveList = new List<string>() { };
+    public static List<string> soluceMoveList = new List<string>() { };
     private readonly List<string> allMoves = new List<string>()
     { "U", "D", "L", "R", "F", "B",
         "U2", "D2", "L2", "R2", "F2", "B2",
@@ -23,12 +24,48 @@ public class Automate : MonoBehaviour
     private void Awake()
     {
         Screen.SetResolution(1920, 1080, false);
+
+        GetArg();
+    }
+
+    private static void GetArg()
+    {
+        string mix = "";
+        string solution = "";
+        var args = System.Environment.GetCommandLineArgs();
+        if (args.Length == 3)
+        {
+            mix = args[1];
+            solution = args[2];
+        }
+        //List<string> moves = new List<string>();
+        //string[] stringSeparators = new string[] { ", " };
+        //string[] splitArray =  ift.Split(stringSeparators, StringSplitOptions.None);
+
+        char[] delimiterChars = { ' ', ',', '.', ':', '\t' };
+        string[] words = mix.Split(delimiterChars);  
+
+        List<string> moves = new List<string>();
+        //moves.AddRange(splitArray);
+        moves.AddRange(words);
+        moveList = moves;
+
+        words = solution.Split(delimiterChars);  
+
+        moves = new List<string>();
+        moves.AddRange(words);
+        soluceMoveList = moves;
     }
 
     private void Start()
     {
         cubeState = FindObjectOfType<CubeState>();
         readCube = FindObjectOfType<ReadCube>();
+    }
+
+    public void Solve()
+    {
+        moveList = soluceMoveList;
     }
 
     private void AnimationBegin()
@@ -51,24 +88,22 @@ public class Automate : MonoBehaviour
 
     public void Retry()
     {
-        anim = false;
-        CubeState.autoRotating = false;
-        CubeState.started = true;
-        moveList.Clear();
+        Cleanup();
 
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     }
 
+    private void Cleanup()
+    {
+        anim = false;
+        CubeState.autoRotating = false;
+        CubeState.started = true;
+        moveList.Clear();
+    }
+
     private void Update()
     {
-        // if (moveList.Count > 0 && !CubeState.autoRotating && CubeState.started)
-        // {
-        //     DoMove(moveList[0]);
-
-        //     moveList.Remove(moveList[0]);
-        // }
-
         if (!anim)
             AnimationBegin();
     }

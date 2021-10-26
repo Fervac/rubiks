@@ -37,14 +37,14 @@ public class PivotRotation : MonoBehaviour
                 dragging = false;
                 RotateToRightAngle();
             }
+
+            speed = slider.value;
         }
 
         if (autoRotating)
         {
             AutoRotate();
         }
-
-        speed = slider.value;
     }
 
     private void SpinSide(List<GameObject> side)
