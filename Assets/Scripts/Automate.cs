@@ -91,6 +91,11 @@ public class Automate : MonoBehaviour
         SceneManager.LoadScene(scene.name);
     }
 
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
     private void Cleanup()
     {
         anim = false;
