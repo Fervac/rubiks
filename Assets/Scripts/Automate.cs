@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class Automate : MonoBehaviour
 {
     public static List<string> moveList = new List<string>() { };
+    public static List<string> mixMoveList = new List<string>() { };
     public static List<string> soluceMoveList = new List<string>() { };
     private readonly List<string> allMoves = new List<string>()
     { "U", "D", "L", "R", "F", "B",
@@ -17,6 +18,10 @@ public class Automate : MonoBehaviour
 
     private CubeState cubeState;
     private ReadCube readCube;
+
+    public Button mixButton;
+    public Button solveButton;
+    public bool _mixed = false;
 
     public InputField inputField;
     private bool anim = false;
@@ -42,7 +47,7 @@ public class Automate : MonoBehaviour
 
         List<string> moves = new List<string>();
         moves.AddRange(words);
-        moveList = moves;
+        mixMoveList = moves;
 
         words = solution.Split(delimiterChars);  
 
@@ -59,10 +64,45 @@ public class Automate : MonoBehaviour
         GetArg();
     }
 
+    public void Mix()
+    {
+        Cleanup();
+
+        GetArg();
+
+        moveList = mixMoveList;
+        _mixed = true;
+    }
+
     public void Solve()
     {
         Cleanup();
         moveList = soluceMoveList;
+        _mixed = false;
+    }
+
+    private void ButtonSwitch(bool _switch)
+    {
+        if (!_switch)
+        {
+            mixButton.interactable = false;
+            solveButton.interactable = false;
+        }
+
+        if (_switch)
+        {
+            if (_mixed)
+            {
+                mixButton.interactable = false;
+                solveButton.interactable = true;
+            }
+            else
+            {
+                mixButton.interactable = true;
+                solveButton.interactable = false;
+            }
+        }
+        
     }
 
     private void AnimationBegin()
@@ -76,10 +116,18 @@ public class Automate : MonoBehaviour
         yield return new WaitForSeconds(.01f);
         if (moveList.Count > 0 && !CubeState.autoRotating && CubeState.started)
         {
+            ButtonSwitch(false);
+
             DoMove(moveList[0]);
             moveList.Remove(moveList[0]);
             anim = false;
         }
+
+        if (moveList.Count == 0)
+        {
+            ButtonSwitch(true);
+        }
+
         anim = false;
     }
 
@@ -115,9 +163,6 @@ public class Automate : MonoBehaviour
         //List<string> moves = new List<string>();
         
         string ift = inputField.text;
-
-        //string[] stringSeparators = new string[] { ", " };
-        //string[] splitArray =  ift.Split(stringSeparators, StringSplitOptions.None);
 
         char[] delimiterChars = { ' ', ',', '.', ':', '\t' };
         string[] words = ift.Split(delimiterChars);  

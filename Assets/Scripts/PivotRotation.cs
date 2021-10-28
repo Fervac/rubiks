@@ -11,9 +11,8 @@ public class PivotRotation : MonoBehaviour
     private bool dragging = false;
     private bool autoRotating = false;
     private float sensitivity = 0.4f;
-    //private float speed = 350f;
     public Slider slider;
-    private float speed = 550f;
+    private float speed = 700f;
     private Vector3 rotation;
 
     private Quaternion targetQuaternion;
@@ -32,19 +31,19 @@ public class PivotRotation : MonoBehaviour
         if (dragging && !autoRotating)
         {
             SpinSide(activeSide);
-            if (Input.GetMouseButtonUp(0))
-            {
-                dragging = false;
-                RotateToRightAngle();
-            }
-
-            speed = slider.value;
+            // if (Input.GetMouseButtonUp(0))
+            // {
+            //     dragging = false;
+            //     RotateToRightAngle();
+            // }
         }
 
         if (autoRotating)
         {
             AutoRotate();
         }
+
+        speed = slider.value;
     }
 
     private void SpinSide(List<GameObject> side)
